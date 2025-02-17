@@ -3,20 +3,33 @@ package com.example;
 import java.time.LocalDate;
 
 public class Task {
+    private int id;
     private String title;
     private String description;
     private LocalDate dueDate;
     private String status;
 
     // コンストラクタ
-    public Task(String title, String description, LocalDate dueDate, String status) {
+    public Task(int id, String title, String description, LocalDate dueDate, String status) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.status = status;
     }
 
+    public Task(String 新しいタスク, String これは新しいタスクです, LocalDate localDate, String 保留中) {
+    }
+
     // ゲッターとセッター
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
