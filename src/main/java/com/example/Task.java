@@ -10,15 +10,11 @@ public class Task {
     private String status;
 
     // コンストラクタ
-    public Task(int id, String title, String description, LocalDate dueDate, String status) {
-        this.id = id;
+    public Task(String title, String description, LocalDate dueDate, String status) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.status = status;
-    }
-
-    public Task(String 新しいタスク, String これは新しいタスクです, LocalDate localDate, String 保留中) {
     }
 
     // ゲッターとセッター
