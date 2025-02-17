@@ -17,12 +17,13 @@ public class TaskDatabaseManager {
     // タスクの保存
     public void saveTask(Task task) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String sql = "INSERT INTO tasks (title, description, due_date, status) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO tasks (id, title, description, due_date, status) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, task.getTitle());
-            statement.setString(2, task.getDescription());
-            statement.setDate(3, java.sql.Date.valueOf(task.getDueDate()));
-            statement.setString(4, task.getStatus());
+            statement.setInt(1, task.getId()); // getId メソッドを正しく呼び出し
+            statement.setString(2, task.getTitle());
+            statement.setString(3, task.getDescription());
+            statement.setDate(4, java.sql.Date.valueOf(task.getDueDate()));
+            statement.setString(5, task.getStatus());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,6 +39,7 @@ public class TaskDatabaseManager {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Task task = new Task(
+                        resultSet.getInt("id"), // getId メソッドを正しく呼び出し
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getDate("due_date").toLocalDate(),

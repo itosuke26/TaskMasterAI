@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.example'
@@ -10,11 +11,11 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.poi:poi-ooxml:4.1.2'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'mysql:mysql-connector-java:8.0.27'
 }
 
-test {
-    useJUnitPlatform()
+application {
+    mainClassName = 'com.example.Main'
 }

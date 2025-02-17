@@ -7,7 +7,7 @@ public class AiIntegration {
     public static String generateTaskGoal(String prompt) {
         StringBuilder result = new StringBuilder();
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "ai_model.py", prompt);
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "src/main/python/ai_model.py", prompt);
             Process process = processBuilder.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
