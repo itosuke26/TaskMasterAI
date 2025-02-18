@@ -9,7 +9,7 @@ TaskMasterAIは、タスク管理を効率化するためのアプリケーシ�
 - AIによるタスク目標の生成
 - タスクのExcelおよびWord形式へのエクスポート
 
-このプロジェクトは、Microsoft Copilotさんと共同しながら作成していきました。
+このプロジェクトは、Microsoft Copilotと共同しながら作成していきました。
 
 ## セットアップ
 
@@ -17,12 +17,16 @@ TaskMasterAIは、タスク管理を効率化するためのアプリケーシ�
 ```bash
 git clone https://github.com/itosuke26/TaskMasterAI.git
 cd TaskMasterAI
+```
+
 2. Pythonの仮想環境の設定
-bash
+```bash
 cd src/main/python
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+```
+
 3. 環境変数の設定
 Windowsの環境変数にMYSQL_PASSWORDを追加します。
 
@@ -43,21 +47,25 @@ Windowsの環境変数にMYSQL_PASSWORDを追加します。
 タスクの入力と保存
 TaskManagerUIまたはJavaコード内でタスクを入力します。
 
-java
+```java
 Task task1 = new Task("新しいタスク1", "これは新しいタスク1です", LocalDate.now().plusDays(7), "保留中");
 taskManager.addTask(task1);
 データベースに保存します。
+```
 
-java
+```java
 dbManager.saveTask(task1);
 データベースからタスクを取得して表示します。
+```
 
-java
+```java
 dbManager.getAllTasks().forEach(t -> {
     System.out.println(t.getTitle() + ": " + t.getDescription() + " (締め切り: " + t.getDueDate() + ", ステータス: " + t.getStatus() + ")");
 });
+```
+
 初期のMain.javaコード
-java
+```java
 package com.example;
 
 import java.time.LocalDate;
@@ -91,14 +99,18 @@ public class Main {
         });
     }
 }
+```
+
 Pythonコードの実行
 AIモデルを使用してタスク目標を生成します。
 
-bash
+```bash
 python ai_model.py
+```
+
 ユーザーインターフェースの確認
 Main.javaコードを書き換えます：
-java
+```java
 package com.example;
 
 import javax.swing.SwingUtilities;
@@ -113,13 +125,17 @@ public class Main {
         });
     }
 }
+```
+
 これを保存し、以下のコマンドで実行します：
 
-bash
+```bash
 .\gradlew.bat run
+```
+
 エクスポート機能の確認
 Main.javaコードを書き換えます：
-java
+```java
 package com.example;
 
 import java.time.LocalDate;
@@ -150,13 +166,17 @@ public class Main {
         wordExporter.exportTasksToWord(taskManager.getAllTasks(), "tasks.docx");
     }
 }
+```
+
 これを保存し、以下のコマンドで実行します：
 
-bash
+```bash
 .\gradlew.bat run
+```
+
 AI生成タスク目標の確認
 Main.javaコードを書き換えます：
-java
+```java
 package com.example;
 
 public class Main {
@@ -168,9 +188,18 @@ public class Main {
         System.out.println("生成されたタスク目標: " + generatedGoal);
     }
 }
+```
+
 これを保存し、以下のコマンドで実行します：
 
-bash
+```bash
 .\gradlew.bat run
+```
+
 生成されたファイルの確認
 プロジェクトディレクトリ内にtasks.xlsxおよびtasks.docxファイルが正しく生成されていることを確認します。
+
+注意事項
+公開リポジトリにパスワードを含めないようにするため、環境変数を使用してください。
+
+必要に応じてMySQLパスワードを変更してください。
